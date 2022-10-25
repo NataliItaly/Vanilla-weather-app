@@ -131,6 +131,7 @@ h1 {
 .source-link {
   color: inherit;
   text-decoration: none;
+  font-size: 14px;
 }
 
 .source-link:hover {
