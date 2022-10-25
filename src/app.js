@@ -8,13 +8,24 @@ const farenheit = document.querySelector(".farenheit");
 const currentTemperature = document.querySelector(".current-temperature");
 
 /*-----------------date-------------------- */
-let now = new Date();
-let day = setZero(now.getDate());
-let month = setZero(now.getMonth() + 1);
-let year = now.getFullYear();
-let hours = setZero(now.getHours());
-let minutes = setZero(now.getMinutes());
-let seconds = setZero(now.getSeconds());
+
+function showTime() {
+  let now = new Date();
+  let day = setZero(now.getDate());
+  let month = setZero(now.getMonth() + 1);
+  let year = now.getFullYear();
+  let hours = setZero(now.getHours());
+  let minutes = setZero(now.getMinutes());
+  let seconds = setZero(now.getSeconds());
+  let dateString = `${day}.${month}.${year}`;
+  dateBlock.innerHTML = dateString;
+  let timeString = `${hours}.${minutes}.${seconds}`;
+  timeBlock.innerHTML = timeString;
+  setTimeout(showTime, 1000);
+}
+
+showTime();
+
 function setZero(data) {
   if (data < 10) {
     return "0" + data;
@@ -22,13 +33,6 @@ function setZero(data) {
     return data;
   }
 }
-/* day = setZero(day);
-month = setZero(month); */
-
-let dateString = `${day}.${month}.${year}`;
-dateBlock.innerHTML = dateString;
-let timeString = `${hours}.${minutes}.${seconds}`;
-timeBlock.innerHTML = timeString;
 
 /*-------------------submit-------------------- */
 
