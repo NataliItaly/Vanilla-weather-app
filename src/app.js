@@ -55,6 +55,8 @@ celcius.addEventListener("click", function () {
       (Number(currentTemperature.innerHTML) - 32) / 1.8
     );
     currentTemperature.innerHTML = celciusString;
+    celcius.classList.add("active-degree");
+    farenheit.classList.remove("active-degree");
     isCelcius = true;
   }
 });
@@ -66,6 +68,8 @@ farenheit.addEventListener("click", function () {
       Number(currentTemperature.innerHTML) * 1.8 + 32
     );
     currentTemperature.innerHTML = farenheitString;
+    celcius.classList.remove("active-degree");
+    farenheit.classList.add("active-degree");
     isCelcius = false;
   } else {
     console.log(isCelcius);
@@ -129,7 +133,7 @@ function showWeather(response) {
   currentWind.textContent = wind + "m/s";
   currentSunrise.textContent = formatTime(sunrise);
   currentSunset.textContent = formatTime(sunset);
-  currentImage.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" alt="weather-icon">`;
+  currentImage.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" alt="${response.data.weather[0].description}">`;
 }
 
 function setPosition(position) {

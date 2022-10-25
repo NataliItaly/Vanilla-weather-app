@@ -67,7 +67,6 @@ h1 {
   text-align: center;
   font-size: 32px;
   text-transform: capitalize;
-  margin-bottom: 15px;
 }
 
 .centered {
@@ -85,11 +84,20 @@ h1 {
 .celcius,
 .farenheit {
   cursor: pointer;
+  color: #4e4c4c;
+}
+
+.celcius:hover,
+.farenheit:hover {
+  transform: scale(1.5);
+}
+
+.active-degree {
+  color: #212529;
 }
 
 .divider {
   font-size: 21px;
-  color: #5c5959;
 }
 
 .date {
@@ -123,9 +131,7 @@ h1 {
 
 .city:hover,
 .fa-solid:hover,
-.description-item:hover,
-.celcius:hover,
-.farenheit:hover {
+.description-item:hover {
   color: #7a7676;
 }
 
