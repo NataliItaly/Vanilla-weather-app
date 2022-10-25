@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="src/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -11,11 +17,87 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/2098af3067.js"
+      crossorigin="anonymous"
+    ></script>
+
     <title>Vanilla Weather App</title>
   </head>
   <body>
-    <button class="primary-button">Click</button>
-    <button type="button" class="btn btn-primary">Primary</button>
+    <div class="container">
+      <header class="header">
+        <h1>Weather App</h1>
+        <form action="" id="city-form">
+          <input
+            type="text"
+            placeholder="Enter your city name"
+            id="city-input"
+          />
+          <input
+            type="submit"
+            value="Search"
+            id="search"
+            class="btn btn-primary"
+          />
+          <button id="current-geolocation" class="btn btn-info">
+            Search Geolocation
+          </button>
+        </form>
+        <p class="city"></p>
+      </header>
+      <main class="main">
+        <section class="row">
+          <div class="col-4 date"></div>
+          <div class="col-4 temperature centered">
+            <i class="fa-solid fa-temperature-low"></i>
+            <p>
+              <span class="current-temperature"></span>
+              <span class="celcius">°C</span> <span class="divider">|</span>
+              <span class="farenheit">°F</span>
+            </p>
+            <p class="feel-temperature">
+              feels like <span class="current-feel-temperature"></span>°C
+            </p>
+          </div>
+          <div class="col-4 time">09.00.05</div>
+        </section>
+
+        <section class="row forecast">
+          <div class="col-6 text-column">
+            <ul class="description-list">
+              <li class="description-item">
+                <i class="fa-regular fa-sun"></i>
+                <span class="current-weather-description"></span>
+              </li>
+              <li class="description-item">
+                <i class="fa-solid fa-wind"></i> wind speed
+                <span class="current-wind"></span>m/s
+              </li>
+              <li class="description-item">
+                <i class="fa-solid fa-droplet"></i> humidity
+                <span class="current-humidity"></span>%
+              </li>
+              <li class="description-item">
+                <i class="fa-duotone fa-sunrise"></i> sunrise
+                <span class="current-sunrise"></span>
+              </li>
+              <li class="description-item">
+                <i class="fa-regular fa-sunset"></i> sunset
+                <span class="current-sunset"></span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 image-column"></div>
+        </section>
+      </main>
+    </div>
     <script src="src/app.js"></script>
   </body>
 </html>
