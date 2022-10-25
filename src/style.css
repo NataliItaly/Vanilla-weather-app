@@ -127,3 +127,13 @@ h1 {
 .farenheit:hover {
   color: #7a7676;
 }
+
+.source-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+  color: gray;
+}
