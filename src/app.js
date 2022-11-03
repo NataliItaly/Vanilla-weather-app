@@ -52,7 +52,7 @@ if (isCelcius === true) {
 function showTime() {
   let now = new Date();
   let day = now.getDate();
-  let month = setZero(now.getMonth() + 1);
+  let month = now.getMonth();
   let year = now.getFullYear();
   let hours = setZero(now.getHours());
   let minutes = setZero(now.getMinutes());
