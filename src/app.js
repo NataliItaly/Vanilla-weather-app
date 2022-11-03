@@ -2,10 +2,21 @@ const city = document.querySelector(".city");
 const cityInput = document.querySelector("#city-input");
 const dateBlock = document.querySelector(".date");
 const timeBlock = document.querySelector(".time");
+const weekDayBlock = document.querySelector(".week-day");
 const cityForm = document.querySelector("#city-form");
 const celcius = document.querySelector(".celcius");
 const farenheit = document.querySelector(".farenheit");
 const currentTemperature = document.querySelector(".current-temperature");
+const forecast = document.querySelector(".forecast");
+const weekDays = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 /*-----------------date-------------------- */
 
@@ -21,6 +32,8 @@ function showTime() {
   dateBlock.innerHTML = dateString;
   let timeString = `${hours}.${minutes}.${seconds}`;
   timeBlock.innerHTML = timeString;
+  let weekDay = now.getDay();
+  weekDayBlock.innerHTML = `${weekDays[weekDay]}`;
   setTimeout(showTime, 1000);
 }
 
@@ -115,6 +128,21 @@ function formatTime(timeSpamp) {
   return `${setZero(hours)}:${setZero(minutes)}`;
 }
 
+function formatDay(timeSpamp) {
+  let date = new Date(timeSpamp * 1000);
+  let day = date.getDay();
+  return weekDays[day];
+}
+console.log(formatDay(1667732400));
+
+function getForecast(coordinates) {
+  console.log(coordinates.lat);
+  let apiKey = "5c08670149a0b1a4dc7a372a3d5e5333";
+  const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showWeather(response) {
   console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
@@ -134,6 +162,8 @@ function showWeather(response) {
   currentSunrise.textContent = formatTime(sunrise);
   currentSunset.textContent = formatTime(sunset);
   currentImage.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" alt="${response.data.weather[0].description}">`;
+
+  getForecast(response.data.coord);
 }
 
 function setPosition(position) {
@@ -152,3 +182,27 @@ function getCurrentLocation(event) {
 }
 
 currentGeolocation.addEventListener("click", getCurrentLocation);
+
+/*----------------------display week days forecast---------------------- */
+
+function displayForecast(response) {
+  console.log(response.data.daily);
+  const forecastArr = response.data.daily;
+  forecastArr.forEach((day, index) => {
+    if (index > 0 && index < 7) {
+      let dayForecast = document.createElement("div");
+      dayForecast.classList.add("day-forecast", "col");
+      dayForecast.innerHTML = `<div class="week-day-min">${formatDay(
+        day.dt
+      )}</div>
+            <div class="weather-icon"><img src="http://openweathermap.org/img/wn/${
+              day.weather[0].icon
+            }@2x.png" alt="${day.weather[0].description}"></div>
+            <div class="temperature-min">
+              <span class="temp-max">${Math.round(day.temp.min)}°</span>
+              <span class="temp-max">${Math.round(day.temp.max)}°</span>
+            </div>`;
+      forecast.append(dayForecast);
+    }
+  });
+}

@@ -33,7 +33,6 @@
   <body>
     <div class="container">
       <header class="header">
-        <h1 class="city mb-3"></h1>
         <form action="" id="city-form">
           <input
             type="text"
@@ -51,9 +50,14 @@
           </button>
         </form>
       </header>
-      <main class="main mb-3">
-        <section class="row">
-          <div class="col-4 date"></div>
+      <main class="main mb-5">
+        <section class="row main-row">
+          <div class="col-4 left-column">
+            <h1 class="city mb-3"></h1>
+            <div class="week-day"></div>
+            <div class="date"></div>
+            <div class="col-4 time"></div>
+          </div>
           <div class="col-4 temperature centered">
             <i class="fa-solid fa-temperature-low"></i>
             <p>
@@ -65,12 +69,9 @@
             <p class="feel-temperature">
               feels like <span class="current-feel-temperature"></span>°C
             </p>
+            <div class="col-6 image-column"></div>
           </div>
-          <div class="col-4 time">09.00.05</div>
-        </section>
-
-        <section class="row forecast">
-          <div class="col-6 text-column">
+          <div class="col-4 text-column">
             <ul class="description-list">
               <li class="description-item">
                 <i class="fa-regular fa-sun"></i>
@@ -94,8 +95,9 @@
               </li>
             </ul>
           </div>
-          <div class="col-6 image-column"></div>
         </section>
+
+        <section class="row forecast"></section>
       </main>
       <footer>
         <a
