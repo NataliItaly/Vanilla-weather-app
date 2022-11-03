@@ -23,6 +23,20 @@ const weekDays = [
   "Friday",
   "Saturday",
 ];
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 let isCelcius = true;
 
 if (isCelcius === true) {
@@ -37,13 +51,13 @@ if (isCelcius === true) {
 
 function showTime() {
   let now = new Date();
-  let day = setZero(now.getDate());
+  let day = now.getDate();
   let month = setZero(now.getMonth() + 1);
   let year = now.getFullYear();
   let hours = setZero(now.getHours());
   let minutes = setZero(now.getMinutes());
   let seconds = setZero(now.getSeconds());
-  let dateString = `${day}.${month}.${year}`;
+  let dateString = `${months[month]} ${day}, ${year}`;
   dateBlock.innerHTML = dateString;
   let timeString = `${hours}.${minutes}.${seconds}`;
   timeBlock.innerHTML = timeString;
@@ -119,6 +133,7 @@ function getForecast(coordinates) {
 }
 
 function showWeather(response) {
+  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
   let weatherDesc = response.data.weather[0].description;
   let feelTemperature = Math.round(response.data.main.feels_like);
@@ -131,12 +146,12 @@ function showWeather(response) {
   currentTemperature.textContent = temperature;
   currentWeatherDescription.textContent = weatherDesc;
   currentFeelTemperature.textContent = feelTemperature;
-  currentHumidity.textContent = humidity + "%";
-  currentWind.textContent = wind + "m/s";
+  currentHumidity.textContent = humidity + " %";
+  currentWind.textContent = wind + " m/s";
   currentSunrise.textContent = formatTime(sunrise);
   currentSunset.textContent = formatTime(sunset);
   currentImage.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" alt="${response.data.weather[0].description}">`;
-
+  cityInput.value = "";
   getForecast(response.data.coord);
 }
 
@@ -149,6 +164,11 @@ function setPosition(position) {
 
 function getCurrentLocation(event) {
   event.preventDefault();
+  isCelcius = true;
+  celcius.classList.add("active-degree");
+  farenheit.classList.remove("active-degree");
+  forecast.innerHTML = "";
+  cityInput.value = "";
   navigator.geolocation.getCurrentPosition(setPosition);
 }
 

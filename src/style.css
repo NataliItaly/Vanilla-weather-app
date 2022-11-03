@@ -86,7 +86,7 @@ h1 {
 }
 
 .feel-temperature {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .celcius,
@@ -120,6 +120,11 @@ h1 {
 
 .description-item {
   margin-bottom: 10px;
+  color: #585555;
+}
+
+.current-item {
+  color: black;
 }
 
 .description-list {
