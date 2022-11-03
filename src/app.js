@@ -25,6 +25,14 @@ const weekDays = [
 ];
 let isCelcius = true;
 
+if (isCelcius === true) {
+  celcius.classList.add("active-degree");
+  farenheit.classList.remove("active-degree");
+} else {
+  celcius.classList.remove("active-degree");
+  farenheit.classList.add("active-degree");
+}
+
 /*-----------------date-------------------- */
 
 function showTime() {
@@ -59,6 +67,9 @@ function setZero(data) {
 cityForm.addEventListener("submit", function (event) {
   event.preventDefault();
   city.innerHTML = cityInput.value;
+  isCelcius = true;
+  celcius.classList.add("active-degree");
+  farenheit.classList.remove("active-degree");
 });
 
 /*------------------celcius-farenheit--------------- */
@@ -169,6 +180,7 @@ function displayForecast(response) {
   });
 
   celcius.addEventListener("click", function () {
+    console.log("$");
     if (isCelcius === true) {
       return;
     } else {
